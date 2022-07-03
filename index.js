@@ -3,9 +3,13 @@ const app= new express()
 app.use(express.static('public'))
 const ejs= require('ejs')
 
+let port=process.env.PORT;
+if(port==null || port==""){
+    port=4000;
+}
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/my_database',{useNewUrlParser:true})
+mongoose.connect('mongodb+srv://saurabhiitism:Pass@cluster0.ezlmdrf.mongodb.net/?retryWrites=true&w=majority',{useNewUrlParser:true})
 app.set('view engine','ejs')
 
 const bodyParser=require('body-parser')
@@ -65,6 +69,6 @@ app.get('/auth/logout',logoutController)
 
 app.use((req,res)=>res.render('notFound'));
 
-app.listen(4000,()=>{
-    console.log('Saurabh App listening on port 4000')
+app.listen(port,()=>{
+    console.log('Saurabh-blog App listening')
 })
